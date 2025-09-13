@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <unordered_set>
 #include "chainhash.h"
 
 using namespace std;
@@ -51,16 +50,39 @@ ListNode* findNode(ListNode* head, int value) {
     return nullptr;
 }
 
-// TODO: implementar la conexión de las listas en el nodo con valor intersectVal
 // Si intersectVal no se encuentra, las listas permanecen separadas   
 void connectLists(ListNode* listA, ListNode* listB, int intersectVal) {
-    //TODO: implemente aqui
+    if (!listA || !listB) return;
+
+    ListNode* intersection = findNode(listA, intersectVal);
+    if (!intersection) return;
+
+    ListNode* current = listB;
+    while (current->next) {
+        current = current->next;
+    }
+    current->next = intersection;
 }
 
 
-// TODO: implementar el algoritmo para encontrar la intersección de dos listas
 ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-    // TODO: implemente aqui
+    if (!headA || !headB) return nullptr;
+
+    ChainHash<ListNode*, bool> vistos;
+    ListNode* currentA = headA;
+    while (currentA) {
+        vistos.set(currentA, true);
+        currentA = currentA->next;
+    }
+
+    ListNode* currentB = headB;
+    while (currentB) {
+        if (vistos.contains(currentB)) {
+            return currentB;
+        }
+        currentB = currentB->next;
+    }
+
     return nullptr;
 }
 
