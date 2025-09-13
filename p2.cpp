@@ -3,7 +3,7 @@
 #include <string>
 #include <sstream>
 #include <algorithm>
-#include "chainhash_sol.h"
+#include "chainhash.h"
 
 using namespace std;
 
@@ -33,8 +33,24 @@ vector<string> tokenize(const string& text) {
 
 // TODO: Implementar el algoritmo Bag of Words
 ChainHash<string, vector<int>> bagOfWords(const vector<string>& documentos) {
-    ChainHash<string, vector<int>> result(13);     
-    // TODO: Implementar algoritmo aquí    
+    ChainHash<string, vector<int>> result(13);
+
+    for (int i = 0; i < documentos.size(); i++) {
+        vector<string> words = tokenize(documentos[i]);
+
+        for (const string& word : words) {
+            if (result.contains(word)) {
+                vector<int> appearances = result.get(word);
+                if (find(appearances.begin(), appearances.end(), i) == appearances.end()) {
+                    appearances.emplace_back(i);
+                }
+                result.set(word, appearances);
+            } else {
+                result.set(word, {i});
+            }
+        }
+    }
+
     return result;
 }
 
