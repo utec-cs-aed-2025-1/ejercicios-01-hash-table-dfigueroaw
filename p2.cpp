@@ -31,7 +31,6 @@ vector<string> tokenize(const string& text) {
     return words;
 }
 
-// TODO: Implementar el algoritmo Bag of Words
 ChainHash<string, vector<int>> bagOfWords(const vector<string>& documentos) {
     ChainHash<string, vector<int>> result(13);
 

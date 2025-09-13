@@ -62,6 +62,7 @@ Liberar toda la memoria utilizada.
 - **P2:** Implementar algoritmo "Bag of Words" usando tabla hash. Crear un diccionario que mapee cada palabra a los índices de documentos donde aparece.
 ![Evidencia 2](evidencia-p2.png)
 - **P3:** Resolver el problema de intersección de listas enlazadas usando tabla hash. Implementar `connectLists()` para crear intersecciones y `getIntersectionNode()` para encontrarlas eficientemente.
+![Evidencia 3](evidencia-p3.png)
 
 ## Compilación y Ejecución
 ```bash
